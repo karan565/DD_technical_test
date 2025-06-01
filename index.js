@@ -8,7 +8,7 @@ app.use(express.json());
 app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Invalid url');
+    res.send('User API running in ECS container');
 });
 
 app.listen(port, () => {

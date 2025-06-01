@@ -1,11 +1,12 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 const { dynamoClient, TABLE_NAME } = require('../dynamoClient');
+const validateUser = require('../middlewares/validateUser');
 
 const router = express.Router();
 
 // Create User
-router.post('/', async (req, res) => {
+router.post('/',validateUser, async (req, res) => {
   const user = { id: uuidv4(), ...req.body };
   await dynamoClient.put({ TableName: TABLE_NAME, Item: user }).promise();
   res.json(user);
@@ -25,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update User
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateUser,async (req, res) => {
   const params = {
     TableName: TABLE_NAME,
     Key: { id: req.params.id },
