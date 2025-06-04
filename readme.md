@@ -4,7 +4,7 @@ This API lets you create, read, update, and delete users.
 
 ## Base URL
 
-http://3.110.212.203:3000
+http://43.205.203.78:3000
 
 ## Endpoints
 
